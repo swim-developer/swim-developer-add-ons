@@ -1,0 +1,71 @@
+# Build output
+target/
+build/
+dist/
+/out/
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+replay_pid*
+
+# Maven
+.mvn/wrapper/maven-wrapper.jar
+.flattened-pom.xml
+
+# Gradle
+.gradle/
+gradle/
+
+# IDEs
+.idea/
+*.iml
+*.iws
+*.ipr
+.project
+.classpath
+.settings/
+.factorypath
+*.code-workspace
+.vscode/
+.eclipse/
+*.swp
+*.swo
+*~
+.nb-gradle/
+nbproject/
+nbactions.xml
+
+# AI tools
+CLAUDE.md
+.claude/
+.cursor/
+.copilot/
+.aider/
+.codeium/
+
+# OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Coverage and analysis
+.sonar/
+.scannerwork/
+coverage/
+*.lcov
+.nyc_output/

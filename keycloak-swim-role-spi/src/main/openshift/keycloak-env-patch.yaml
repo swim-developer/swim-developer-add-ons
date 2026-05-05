@@ -1,0 +1,25 @@
+spec:
+  unsupported:
+    podTemplate:
+      spec:
+        containers:
+          - name: keycloak
+            env:
+              - name: SWIM_ROLE_TARGET_CLIENT
+                value: "amq-broker"
+              - name: SWIM_ROLE_SUFFIXES
+                value: "-swim-dnotam-v1-amq-role,-swim-ed254-v1-amq-role"
+            volumeMounts:
+              - name: swim-role-spi
+                mountPath: /opt/keycloak/providers/keycloak-swim-role-spi.jar
+                subPath: keycloak-swim-role-spi.jar
+              - name: geolocation-spi
+                mountPath: /opt/keycloak/providers/keycloak-geolocation-spi.jar
+                subPath: keycloak-geolocation-spi.jar
+        volumes:
+          - name: swim-role-spi
+            secret:
+              secretName: keycloak-swim-role-spi
+          - name: geolocation-spi
+            secret:
+              secretName: keycloak-geolocation-spi

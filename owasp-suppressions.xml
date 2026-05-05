@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
+
+    <!--
+        quarkus-jdbc-mariadb is the Quarkus JDBC driver extension, NOT the MariaDB server.
+        OWASP Dependency-Check incorrectly matches CPE "cpe:2.3:a:mariadb:mariadb" against
+        the driver JAR, assigning server-side CVEs to a client-side library.
+    -->
+    <suppress>
+        <notes><![CDATA[
+            False positive: CVEs for MariaDB Server incorrectly matched to Quarkus JDBC driver.
+            The driver does not contain MariaDB server code.
+        ]]></notes>
+        <packageUrl regex="true">^pkg:maven/io\.quarkus/quarkus\-jdbc\-mariadb@.*$</packageUrl>
+        <cpe>cpe:/a:mariadb:mariadb</cpe>
+    </suppress>
+
+    <suppress>
+        <notes><![CDATA[
+            False positive: CVE-2026-33186 affects gRPC-Go (Go language implementation).
+            CPE in NVD uses target_sw=go qualifier. These are gRPC-Java JARs (io.grpc),
+            which are a completely separate implementation unaffected by this CVE.
+        ]]></notes>
+        <packageUrl regex="true">^pkg:maven/io\.grpc/grpc.*@.*$</packageUrl>
+        <cve>CVE-2026-33186</cve>
+    </suppress>
+
+    <suppress>
+        <notes><![CDATA[
+            False positive: OWASP matches Quarkus version 3.34.6 as if it were
+            Infinispan Server version 3.34.6 (which does not exist; Infinispan uses 16.x versioning).
+            quarkus-infinispan-client is a thin Quarkus extension, not the Infinispan server.
+        ]]></notes>
+        <packageUrl regex="true">^pkg:maven/io\.quarkus/quarkus\-infinispan\-client@.*$</packageUrl>
+        <cpe>cpe:/a:infinispan:infinispan</cpe>
+    </suppress>
+
+    <suppress>
+        <notes><![CDATA[
+            False positive: OWASP matches Quarkus version 3.34.6 as if it were
+            MongoDB server version 3.34.6 (which does not exist; MongoDB uses 6.x/7.x versioning).
+            quarkus-mongodb-client is a thin Quarkus extension, not the MongoDB server.
+        ]]></notes>
+        <packageUrl regex="true">^pkg:maven/io\.quarkus/quarkus\-mongodb.*@.*$</packageUrl>
+        <cpe>cpe:/a:mongodb:mongodb</cpe>
+    </suppress>
+
+</suppressions>
