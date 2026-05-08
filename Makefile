@@ -3,7 +3,7 @@
 ARTEMIS_PLUGIN_DIR := activemq-log-plugins
 KEYCLOAK_SPI_DIR   := keycloak-swim-role-spi
 
-.PHONY: help build test sonar security-deps
+.PHONY: help sync pull build test sonar security-deps
 
 help:
 	@echo "Available targets:"
@@ -11,6 +11,13 @@ help:
 	@echo "  test          Run unit tests for both modules"
 	@echo "  sonar         Run SonarQube analysis (requires SONAR_HOST_URL and SONAR_TOKEN)"
 	@echo "  security-deps OWASP Dependency-Check on both modules"
+	@echo "  sync          Pull this project from remote (git pull --ff-only)"
+	@echo "  pull          Pull this project from remote (git pull --ff-only)"
+
+sync: pull
+
+pull:
+	@git pull --ff-only
 
 build:
 	cd $(ARTEMIS_PLUGIN_DIR) && ./mvnw clean package -DskipTests
