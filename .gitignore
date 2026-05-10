@@ -41,7 +41,6 @@ nbproject/
 nbactions.xml
 
 # AI tools
-CLAUDE.md
 .claude/
 .cursor/
 .copilot/
