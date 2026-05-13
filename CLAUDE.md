@@ -64,13 +64,8 @@ Two classes implementing the Keycloak EventListener SPI pattern:
 
 Configured via env vars `SWIM_ROLE_TARGET_CLIENT` and `SWIM_ROLE_SUFFIXES`. Deployed on OpenShift via `deploy-spi.sh` which builds, creates a K8s Secret with the JAR, patches the Keycloak CR, and restarts the pod.
 
-## Code Standards (from Cursor rules)
+## Code Standards
 
-- No comments in code
-- No inner classes — every class in its own file (the `ACKMessage` record inside `ACKMonitorPlugin` is a known exception predating this rule)
-- Max 400 lines per file (markdown exempt)
-- Use `@Slf4j` (Lombok) for logging — no manual `LoggerFactory.getLogger()` calls
-- No Java Reflection anywhere
+- The `ACKMessage` record inside `ACKMonitorPlugin` is a known exception to the "no inner classes" rule, predating its adoption.
 - All OpenShift/K8s resources must be physical YAML files applied via `oc apply -f`
-- Never delete or disable production code to make tests pass
 - Code and documentation in English
