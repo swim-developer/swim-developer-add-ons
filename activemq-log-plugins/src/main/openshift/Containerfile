@@ -1,0 +1,9 @@
+FROM registry.redhat.io/amq7/amq-broker-init-rhel9:7.13
+
+COPY activemq-log-plugin.jar /amq/extra/
+COPY post-config.sh /amq/scripts/post-config.sh
+
+USER root
+RUN chmod +x /amq/scripts/post-config.sh
+USER 185
+

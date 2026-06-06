@@ -1,0 +1,14 @@
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.5.7
+    volumes:
+      - ./target/keycloak-swim-role-spi-1.0.0-SNAPSHOT.jar:/opt/keycloak/providers/keycloak-swim-role-spi.jar:Z
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_HEALTH_ENABLED: "true"
+      SWIM_ROLE_TARGET_CLIENT: amq-broker
+      SWIM_ROLE_SUFFIXES: "-swim-dnotam-v1-amq-role,-swim-ed254-v1-amq-role"
+    ports:
+      - "9080:8080"
+    command: start-dev

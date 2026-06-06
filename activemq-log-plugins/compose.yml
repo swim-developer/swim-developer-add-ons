@@ -1,0 +1,21 @@
+services:
+
+  broker:
+    image: quay.io/artemiscloud/activemq-artemis-broker:artemis.2.38.0
+    container_name: ack-monitor-broker
+    ports:
+      - "5672:5672"
+      - "8161:8161"
+    environment:
+      AMQ_USER: admin
+      AMQ_PASSWORD: admin
+      AMQ_REQUIRE_LOGIN: "true"
+    volumes:
+      - ./target/activemq-log-plugin.jar:/amq/extra/activemq-log-plugin.jar:Z,ro
+      - ./src/main/openshift/post-config.sh:/amq/scripts/post-config.sh:Z,ro
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:8161/console/ || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
